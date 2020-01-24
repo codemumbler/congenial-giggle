@@ -63,4 +63,9 @@ public class RomanNumeralsTest {
   public void convertEleven() {
     assertEquals("XI", romanNumerals.convert(11));
   }
+
+  @Test
+  public void convertThirty() {
+    assertEquals("XL", romanNumerals.convert(40));
+  }
 }
