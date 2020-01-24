@@ -2,25 +2,18 @@ package io.github.codemumbler;
 
 public class RomanNumerals {
 
-  public String convert(int i) {
-    if (i >= 40) {
-      return "XL" + convert(i - 40);
-    }
-    if (i >= 10) {
-      return "X" + convert(i - 10);
-    }
-    if (i == 9) {
-      return "IX";
-    }
-    if (i >= 5) {
-      return "V" + convert(i - 5);
-    }
-    if (i == 4) {
-      return "IV";
-    }
-    if (i == 0) {
+  private static final String[] ROMAN_NUMERALS = new String[]{ "L", "XL", "X", "IX", "V", "IV", "I" };
+  private static final Integer[] ROMAN_NUMERALS_VALUES = new Integer[]{ 50, 40, 10, 9, 5, 4, 1 };
+
+  public String convert(int value) {
+    if (value <= 0) {
       return "";
     }
-    return "I" + convert(i - 1);
+    for (int index = 0; index < ROMAN_NUMERALS.length; index++) {
+      if (ROMAN_NUMERALS_VALUES[index] <= value) {
+        return ROMAN_NUMERALS[index] + convert(value - ROMAN_NUMERALS_VALUES[index]);
+      }
+    }
+    return "";
   }
 }
