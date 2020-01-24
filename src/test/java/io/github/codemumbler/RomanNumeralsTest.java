@@ -83,4 +83,9 @@ public class RomanNumeralsTest {
   public void convert359() {
     assertEquals("CCCLIX", romanNumerals.convert(359));
   }
+
+  @Test
+  public void convert412() {
+    assertEquals("CDXII", romanNumerals.convert(412));
+  }
 }
