@@ -93,4 +93,9 @@ public class RomanNumeralsTest {
   public void convert500() {
     assertEquals("D", romanNumerals.convert(500));
   }
+
+  @Test
+  public void convert900() {
+    assertEquals("CM", romanNumerals.convert(900));
+  }
 }
