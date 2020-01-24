@@ -73,4 +73,9 @@ public class RomanNumeralsTest {
   public void convertFifty() {
     assertEquals("L", romanNumerals.convert(50));
   }
+
+  @Test
+  public void convert99() {
+    assertEquals("XCIX", romanNumerals.convert(99));
+  }
 }
