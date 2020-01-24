@@ -23,4 +23,9 @@ public class RomanNumeralsTest {
   public void convertTwo() {
     assertEquals("II", romanNumerals.convert(2));
   }
+
+  @Test
+  public void convertThree() {
+    assertEquals("III", romanNumerals.convert(3));
+  }
 }
