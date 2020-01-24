@@ -3,6 +3,9 @@ package io.github.codemumbler;
 public class RomanNumerals {
 
   public String convert(int i) {
+    if (i > 10) {
+      return "X" + convert(i - 10);
+    }
     if (i == 10) {
       return "X";
     }
