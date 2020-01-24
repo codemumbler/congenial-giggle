@@ -76,16 +76,21 @@ public class RomanNumeralsTest {
 
   @Test
   public void convert99() {
-    assertEquals("XCIX", romanNumerals.convert(99));
+    assertEquals("XC", romanNumerals.convert(90));
   }
 
   @Test
-  public void convert359() {
-    assertEquals("CCCLIX", romanNumerals.convert(359));
+  public void convert100() {
+    assertEquals("C", romanNumerals.convert(100));
   }
 
   @Test
-  public void convert412() {
-    assertEquals("CDXII", romanNumerals.convert(412));
+  public void convert400() {
+    assertEquals("CD", romanNumerals.convert(400));
+  }
+
+  @Test
+  public void convert500() {
+    assertEquals("D", romanNumerals.convert(500));
   }
 }

@@ -2,8 +2,8 @@ package io.github.codemumbler;
 
 public class RomanNumerals {
 
-  private static final String[] ROMAN_NUMERALS = new String[]{ "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-  private static final Integer[] ROMAN_NUMERALS_VALUES = new Integer[]{ 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+  private static final String[] ROMAN_NUMERALS = new String[]{ "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+  private static final Integer[] ROMAN_NUMERALS_VALUES = new Integer[]{ 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 
   public String convert(int value) {
     if (value <= 0) {
