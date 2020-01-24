@@ -38,4 +38,9 @@ public class RomanNumeralsTest {
   public void convertFive() {
     assertEquals("V", romanNumerals.convert(5));
   }
+
+  @Test
+  public void convertSix() {
+    assertEquals("VI", romanNumerals.convert(6));
+  }
 }

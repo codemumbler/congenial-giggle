@@ -3,7 +3,10 @@ package io.github.codemumbler;
 public class RomanNumerals {
 
   public String convert(int i) {
-    switch (i){
+    if (i > 5) {
+      return "V" + convert(i-5);
+    }
+    switch (i) {
       case 5: return "V";
       case 4: return "IV";
       case 3: return "III";
