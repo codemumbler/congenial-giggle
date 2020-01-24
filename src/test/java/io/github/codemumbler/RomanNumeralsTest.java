@@ -53,4 +53,9 @@ public class RomanNumeralsTest {
   public void convertNine() {
     assertEquals("IX", romanNumerals.convert(9));
   }
+
+  @Test
+  public void convertTen() {
+    assertEquals("X", romanNumerals.convert(10));
+  }
 }
