@@ -43,4 +43,14 @@ public class RomanNumeralsTest {
   public void convertSix() {
     assertEquals("VI", romanNumerals.convert(6));
   }
+
+  @Test
+  public void convertEight() {
+    assertEquals("VIII", romanNumerals.convert(8));
+  }
+
+  @Test
+  public void convertNine() {
+    assertEquals("IX", romanNumerals.convert(9));
+  }
 }
