@@ -23,4 +23,9 @@ public class FizzBuzzTest {
   public void two() {
     assertEquals("2", fizzBuzz.convert(2));
   }
+
+  @Test
+  public void threeFizz() {
+    assertEquals("fizz", fizzBuzz.convert(3));
+  }
 }
