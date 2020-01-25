@@ -65,7 +65,7 @@ public class RomanNumeralsTest {
   }
 
   @Test
-  public void convertFourty() {
+  public void convertForty() {
     assertEquals("XL", romanNumerals.convert(40));
   }
 
