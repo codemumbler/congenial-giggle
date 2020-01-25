@@ -3,15 +3,16 @@ package io.github.codemumbler;
 public class FizzBuzz {
 
   public String convert(int i) {
-    if (i % 5 == 0 && i % 3 == 0) {
-      return "fizzbuzz";
+    StringBuilder fizzBuzzReturn = new StringBuilder();
+    if (i % 3 == 0) {
+      fizzBuzzReturn.append("Fizz");
     }
     if (i % 5 == 0) {
-      return "buzz";
+      fizzBuzzReturn.append("Buzz");
     }
-    if (i % 3 == 0) {
-      return "fizz";
+    if (fizzBuzzReturn.length() == 0) {
+      fizzBuzzReturn.append(i);
     }
-    return String.valueOf(i);
+    return fizzBuzzReturn.toString();
   }
 }
