@@ -7,6 +7,7 @@ public class Greeter {
   private static final String HELLO = "Hello";
   private static final String GOOD_MORNING = "Good morning";
   private static final String GOOD_EVENING = "Good evening";
+  private static final String GOOD_NIGHT = "Good night";
   private Calendar calendar;
 
   public String greet(String name) {
@@ -18,6 +19,9 @@ public class Greeter {
     }
     if (hourOfTheDay >= 18 && hourOfTheDay < 22) {
       greeting = GOOD_EVENING;
+    }
+    if (hourOfTheDay >= 22 || hourOfTheDay < 6) {
+      greeting = GOOD_NIGHT;
     }
     return String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));
   }

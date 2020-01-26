@@ -14,7 +14,7 @@ public class GreeterTest {
   @BeforeEach
   public void setUp() {
     greeter = new Greeter();
-    setTime(5);
+    setTime(13);
   }
 
   @Test
@@ -57,8 +57,8 @@ public class GreeterTest {
   }
 
   @Test
-  public void greetEveningUntilNight() {
+  public void greetNight() {
     setTime(22);
-    assertEquals("Hello Name", greeter.greet("name"));
+    assertEquals("Good night Name", greeter.greet("name"));
   }
 }
