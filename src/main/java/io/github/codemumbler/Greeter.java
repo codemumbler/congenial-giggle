@@ -11,7 +11,8 @@ public class Greeter {
   public String greet(String name) {
     String greeting = HELLO;
     name = name.trim();
-    if (getCalendar().get(Calendar.HOUR_OF_DAY) >= 6) {
+    int hourOfTheDay = getCalendar().get(Calendar.HOUR_OF_DAY);
+    if (hourOfTheDay >= 6 && hourOfTheDay < 12) {
       greeting = GOOD_MORNING;
     }
     return String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));

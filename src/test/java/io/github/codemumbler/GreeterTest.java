@@ -14,9 +14,7 @@ public class GreeterTest {
   @BeforeEach
   public void setUp() {
     greeter = new Greeter();
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(Calendar.HOUR_OF_DAY, 5);
-    greeter.setCalendar(calendar);
+    setTime(5);
   }
 
   @Test
@@ -36,9 +34,19 @@ public class GreeterTest {
 
   @Test
   public void greetInTheMorning() {
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(Calendar.HOUR_OF_DAY, 6);
-    greeter.setCalendar(calendar);
+    setTime(6);
     assertEquals("Good morning Name", greeter.greet("name"));
+  }
+
+  private void setTime(int hourOfDay) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+    greeter.setCalendar(calendar);
+  }
+
+  @Test
+  public void greetAfterTheMorning() {
+    setTime(12);
+    assertEquals("Hello Name", greeter.greet("name"));
   }
 }
