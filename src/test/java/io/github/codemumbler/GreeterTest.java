@@ -23,4 +23,9 @@ public class GreeterTest {
   public void greetNameTrimmed() {
     assertEquals("Hello Name", greeter.greet(" Name "));
   }
+
+  @Test
+  public void greetNameCapitalized() {
+    assertEquals("Hello Name", greeter.greet("name"));
+  }
 }
