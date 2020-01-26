@@ -1,8 +1,11 @@
 package io.github.codemumbler;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,11 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GreeterTest {
 
   private Greeter greeter;
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final PrintStream originalOut = System.out;
 
   @BeforeEach
   public void setUp() {
     greeter = new Greeter();
     setTime(13);
+    System.setOut(new PrintStream(outContent));
+  }
+
+  @AfterEach
+  public void tearDown() {
+    System.setErr(originalOut);
   }
 
   @Test
@@ -60,5 +71,11 @@ public class GreeterTest {
   public void greetNight() {
     setTime(22);
     assertEquals("Good night Name", greeter.greet("name"));
+  }
+
+  @Test
+  public void greetLogsToConsole() {
+    greeter.greet("name");
+    assertEquals("Hello Name" + System.lineSeparator(), outContent.toString());
   }
 }

@@ -23,7 +23,9 @@ public class Greeter {
     if (hourOfTheDay >= 22 || hourOfTheDay < 6) {
       greeting = GOOD_NIGHT;
     }
-    return String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));
+    String fullGreeting = String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));
+    System.out.println(fullGreeting);
+    return fullGreeting;
   }
 
   void setCalendar(Calendar calendar) {
