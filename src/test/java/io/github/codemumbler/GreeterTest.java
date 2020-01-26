@@ -1,14 +1,26 @@
 package io.github.codemumbler;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GreeterTest {
 
+  private Greeter greeter;
+
+  @BeforeEach
+  public void setUp() {
+    greeter = new Greeter();
+  }
+
   @Test
-  public void greetMe() {
-    Greeter greeter = new Greeter();
+  public void greetName() {
     assertEquals("Hello Name", greeter.greet("Name"));
+  }
+
+  @Test
+  public void greetNameTrimmed() {
+    assertEquals("Hello Name", greeter.greet(" Name "));
   }
 }
