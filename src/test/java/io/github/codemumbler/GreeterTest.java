@@ -49,4 +49,10 @@ public class GreeterTest {
     setTime(12);
     assertEquals("Hello Name", greeter.greet("name"));
   }
+
+  @Test
+  public void greetInTheEvening() {
+    setTime(18);
+    assertEquals("Good evening Name", greeter.greet("name"));
+  }
 }

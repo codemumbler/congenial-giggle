@@ -4,8 +4,9 @@ import java.util.Calendar;
 
 public class Greeter {
 
-  public static final String HELLO = "Hello";
-  public static final String GOOD_MORNING = "Good morning";
+  private static final String HELLO = "Hello";
+  private static final String GOOD_MORNING = "Good morning";
+  private static final String GOOD_EVENING = "Good evening";
   private Calendar calendar;
 
   public String greet(String name) {
@@ -14,6 +15,9 @@ public class Greeter {
     int hourOfTheDay = getCalendar().get(Calendar.HOUR_OF_DAY);
     if (hourOfTheDay >= 6 && hourOfTheDay < 12) {
       greeting = GOOD_MORNING;
+    }
+    if (hourOfTheDay >= 18) {
+      greeting = GOOD_EVENING;
     }
     return String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));
   }
