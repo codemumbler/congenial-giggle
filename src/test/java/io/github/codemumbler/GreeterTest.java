@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GreeterTest {
 
+  public static final String HELLO_NAME = "Hello Name";
   private Greeter greeter;
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final PrintStream originalOut = System.out;
@@ -32,23 +33,23 @@ public class GreeterTest {
 
   @Test
   public void greetName() {
-    assertEquals("Hello Name", greeter.greet("Name"));
+    assertEquals(HELLO_NAME, doGreeting());
   }
 
   @Test
   public void greetNameTrimmed() {
-    assertEquals("Hello Name", greeter.greet(" Name "));
+    assertEquals(HELLO_NAME, doGreeting());
   }
 
   @Test
   public void greetNameCapitalized() {
-    assertEquals("Hello Name", greeter.greet("name"));
+    assertEquals(HELLO_NAME, doGreeting());
   }
 
   @Test
   public void greetInTheMorning() {
     setTime(6);
-    assertEquals("Good morning Name", greeter.greet("name"));
+    assertEquals("Good morning Name", doGreeting());
   }
 
   private void setTime(int hourOfDay) {
@@ -60,24 +61,28 @@ public class GreeterTest {
   @Test
   public void greetAfterTheMorning() {
     setTime(12);
-    assertEquals("Hello Name", greeter.greet("name"));
+    assertEquals(HELLO_NAME, doGreeting());
   }
 
   @Test
   public void greetInTheEvening() {
     setTime(18);
-    assertEquals("Good evening Name", greeter.greet("name"));
+    assertEquals("Good evening Name", doGreeting());
   }
 
   @Test
   public void greetNight() {
     setTime(22);
-    assertEquals("Good night Name", greeter.greet("name"));
+    assertEquals("Good night Name", doGreeting());
+  }
+
+  private String doGreeting() {
+    return greeter.greet(" name ");
   }
 
   @Test
   public void greetLogsToConsole() throws UnsupportedEncodingException {
-    greeter.greet("name");
-    assertEquals("Hello Name" + System.lineSeparator(), outContent.toString(StandardCharsets.UTF_8.name()));
+    doGreeting();
+    assertEquals(HELLO_NAME + System.lineSeparator(), outContent.toString(StandardCharsets.UTF_8.name()));
   }
 }
