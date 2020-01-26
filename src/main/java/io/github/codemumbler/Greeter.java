@@ -16,7 +16,7 @@ public class Greeter {
     if (hourOfTheDay >= 6 && hourOfTheDay < 12) {
       greeting = GOOD_MORNING;
     }
-    if (hourOfTheDay >= 18) {
+    if (hourOfTheDay >= 18 && hourOfTheDay < 22) {
       greeting = GOOD_EVENING;
     }
     return String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));

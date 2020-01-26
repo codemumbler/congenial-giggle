@@ -55,4 +55,10 @@ public class GreeterTest {
     setTime(18);
     assertEquals("Good evening Name", greeter.greet("name"));
   }
+
+  @Test
+  public void greetEveningUntilNight() {
+    setTime(22);
+    assertEquals("Hello Name", greeter.greet("name"));
+  }
 }
