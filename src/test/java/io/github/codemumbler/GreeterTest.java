@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,10 +19,10 @@ public class GreeterTest {
   private final PrintStream originalOut = System.out;
 
   @BeforeEach
-  public void setUp() {
+  public void setUp() throws UnsupportedEncodingException {
     greeter = new Greeter();
     setTime(13);
-    System.setOut(new PrintStream(outContent));
+    System.setOut(new PrintStream(outContent, true, StandardCharsets.UTF_8.name()));
   }
 
   @AfterEach
@@ -74,8 +76,8 @@ public class GreeterTest {
   }
 
   @Test
-  public void greetLogsToConsole() {
+  public void greetLogsToConsole() throws UnsupportedEncodingException {
     greeter.greet("name");
-    assertEquals("Hello Name" + System.lineSeparator(), outContent.toString());
+    assertEquals("Hello Name" + System.lineSeparator(), outContent.toString(StandardCharsets.UTF_8.name()));
   }
 }
