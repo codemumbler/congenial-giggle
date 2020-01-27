@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -42,6 +43,11 @@ public class StringCalculatorTest {
   @Test
   public void newDelimiter() {
     assertEquals(3, stringCalculator.add("//;\n1;2"));
+  }
+
+  @Test
+  public void badNewDelimiter() {
+    assertThrows(NumberFormatException.class, () -> stringCalculator.add("//;1,2"));
   }
 
   @Test

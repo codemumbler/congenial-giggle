@@ -6,7 +6,7 @@ public class StringCalculator {
     int total = 0;
     String delimiter = getDelimiter(numbers);
     if (hasADelimiter(numbers)) {
-      numbers = numbers.substring(numbers.indexOf("\n") + 1);
+      numbers = numbers.substring(numbers.indexOf('\n') + 1);
     }
     StringBuilder negatives = new StringBuilder();
     for (String number : numbers.split(delimiter)) {
@@ -18,14 +18,14 @@ public class StringCalculator {
     }
     if (negatives.length() > 0) {
       negatives = new StringBuilder(negatives.substring(0, negatives.length() - 2));
-      throw new RuntimeException(String.format("negatives not allowed %s", negatives.toString()));
+      throw new ArithmeticException(String.format("negatives not allowed %s", negatives.toString()));
     }
     return total;
   }
 
   private String getDelimiter(String numbers) {
     if (hasADelimiter(numbers)) {
-      return numbers.substring(2, numbers.indexOf("\n"));
+      return numbers.substring(2, numbers.indexOf('\n'));
     }
     return "[\n,]";
   }
