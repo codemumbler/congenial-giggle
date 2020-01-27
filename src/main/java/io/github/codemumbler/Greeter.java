@@ -10,8 +10,8 @@ public class Greeter {
   private static final String GOOD_MORNING = "Good morning";
   private static final String GOOD_EVENING = "Good evening";
   private static final String GOOD_NIGHT = "Good night";
+  private static final Logger logger = Logger.getLogger(Greeter.class.getName());
   private Calendar calendar;
-  private Logger logger = Logger.getLogger(Greeter.class.getName());
 
   public String greet(String name) {
     String greeting = HELLO;

@@ -28,4 +28,9 @@ public class StringCalculatorTest {
   public void addEmptyString() {
     assertEquals(0, stringCalculator.add(""));
   }
+
+  @Test
+  public void addNumbers_9() {
+    assertEquals(9, stringCalculator.add("1,1,1,1,1,1,1,1,1"));
+  }
 }
