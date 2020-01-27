@@ -33,4 +33,9 @@ public class StringCalculatorTest {
   public void addNumbers_9() {
     assertEquals(9, stringCalculator.add("1,1,1,1,1,1,1,1,1"));
   }
+
+  @Test
+  public void addNumbersSplitByNewLine() {
+    assertEquals(6, stringCalculator.add("1\n2,3"));
+  }
 }
