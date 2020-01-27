@@ -54,4 +54,15 @@ public class StringCalculatorTest {
     }
     assertEquals("negatives not allowed -1", message);
   }
+
+  @Test
+  public void noNegativesAllowed() {
+    String message = "";
+    try {
+      stringCalculator.add("-1,-2");
+    } catch (Exception e) {
+      message = e.getMessage();
+    }
+    assertEquals("negatives not allowed -1, -2", message);
+  }
 }

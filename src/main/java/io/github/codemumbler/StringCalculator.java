@@ -8,12 +8,17 @@ public class StringCalculator {
     if (hasADelimiter(numbers)) {
       numbers = numbers.substring(numbers.indexOf("\n") + 1);
     }
+    StringBuilder negatives = new StringBuilder();
     for (String number : numbers.split(delimiter)) {
       int nextNumber = (number.isEmpty() ? 0 : Integer.parseInt(number));
       if (nextNumber < 0) {
-        throw new RuntimeException(String.format("negatives not allowed %d", nextNumber));
+        negatives.append(nextNumber).append(", ");
       }
       total += nextNumber;
+    }
+    if (negatives.length() > 0) {
+      negatives = new StringBuilder(negatives.substring(0, negatives.length() - 2));
+      throw new RuntimeException(String.format("negatives not allowed %s", negatives.toString()));
     }
     return total;
   }
