@@ -19,11 +19,9 @@ public class Greeter {
     int hourOfTheDay = getCalendar().get(Calendar.HOUR_OF_DAY);
     if (isTheMorning(hourOfTheDay)) {
       greeting = GOOD_MORNING;
-    }
-    if (isTheEvening(hourOfTheDay)) {
+    } else if (isTheEvening(hourOfTheDay)) {
       greeting = GOOD_EVENING;
-    }
-    if (isTheNight(hourOfTheDay)) {
+    } else if (isTheNight(hourOfTheDay)) {
       greeting = GOOD_NIGHT;
     }
     String fullGreeting = String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));
