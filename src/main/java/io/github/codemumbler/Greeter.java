@@ -1,6 +1,8 @@
 package io.github.codemumbler;
 
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Greeter {
 
@@ -9,6 +11,7 @@ public class Greeter {
   private static final String GOOD_EVENING = "Good evening";
   private static final String GOOD_NIGHT = "Good night";
   private Calendar calendar;
+  private Logger logger = Logger.getLogger(Greeter.class.getName());
 
   public String greet(String name) {
     String greeting = HELLO;
@@ -24,8 +27,12 @@ public class Greeter {
       greeting = GOOD_NIGHT;
     }
     String fullGreeting = String.format("%s %s%s", greeting, name.substring(0, 1).toUpperCase(), name.substring(1));
-    System.out.println(fullGreeting);
+    log(fullGreeting);
     return fullGreeting;
+  }
+
+  void log(String fullGreeting) {
+    logger.log(Level.FINE, fullGreeting);
   }
 
   private boolean isTheNight(int hourOfTheDay) {
@@ -40,14 +47,14 @@ public class Greeter {
     return hourOfTheDay >= 6 && hourOfTheDay < 12;
   }
 
-  void setCalendar(Calendar calendar) {
-    this.calendar = calendar;
-  }
-
   private Calendar getCalendar() {
     if (calendar == null) {
       calendar = Calendar.getInstance();
     }
     return this.calendar;
+  }
+
+  void setCalendar(Calendar calendar) {
+    this.calendar = calendar;
   }
 }
