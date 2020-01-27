@@ -9,7 +9,11 @@ public class StringCalculator {
       numbers = numbers.substring(numbers.indexOf("\n") + 1);
     }
     for (String number : numbers.split(delimiter)) {
-      total += (number.isEmpty() ? 0 : Integer.parseInt(number));
+      int nextNumber = (number.isEmpty() ? 0 : Integer.parseInt(number));
+      if (nextNumber < 0) {
+        throw new RuntimeException(String.format("negatives not allowed %d", nextNumber));
+      }
+      total += nextNumber;
     }
     return total;
   }
