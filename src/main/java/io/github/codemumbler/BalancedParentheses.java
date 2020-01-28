@@ -1,10 +1,11 @@
 package io.github.codemumbler;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class BalancedParentheses {
 
-  private Stack<Character> stack = new Stack<>();
+  private final Deque<Character> stack = new ArrayDeque<>();
 
   public boolean isBalanced(String parentheses) {
     for (int i = 0; i < parentheses.length(); i++) {
