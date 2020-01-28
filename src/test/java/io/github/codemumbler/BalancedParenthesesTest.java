@@ -26,7 +26,12 @@ public class BalancedParenthesesTest {
   }
 
   @Test
-  public void twoSetsBalanced() {
+  public void doubleSetsBalanced() {
     assertTrue(balancedParentheses.isBalanced("(())"));
+  }
+
+  @Test
+  public void twoSetsBalanced() {
+    assertTrue(balancedParentheses.isBalanced("()()"));
   }
 }
