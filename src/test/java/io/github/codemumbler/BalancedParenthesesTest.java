@@ -49,4 +49,16 @@ public class BalancedParenthesesTest {
   public void squareBrackets() {
     assertTrue(balancedParentheses.isBalanced("[]"));
   }
+
+  @Test
+  public void mixedThreeSets() {
+    assertTrue(balancedParentheses.isBalanced("{()}[[{}]]"));
+  }
+
+  @Test
+  public void mixedThreeSets_Unbalanced() {
+    assertFalse(balancedParentheses.isBalanced("{(()}[[{}]]"));
+    assertFalse(balancedParentheses.isBalanced("{())}[[{}]]"));
+    assertFalse(balancedParentheses.isBalanced("{([)}[{}]]"));
+  }
 }

@@ -9,12 +9,17 @@ public class BalancedParentheses {
   public boolean isBalanced(String parentheses) {
     for (int i = 0; i < parentheses.length(); i++) {
       Character currentBracket = parentheses.charAt(i);
-      if (isClosingParentheses(currentBracket) && !stack.isEmpty() && stack.peek().equals(matchingBracket(currentBracket)))
+      if (isMatchingNext(currentBracket)) {
         stack.pop();
-      else
+      } else {
         stack.push(parentheses.charAt(i));
+      }
     }
     return stack.isEmpty();
+  }
+
+  private boolean isMatchingNext(Character currentBracket) {
+    return isClosingParentheses(currentBracket) && !stack.isEmpty() && stack.peek().equals(matchingBracket(currentBracket));
   }
 
   private Character matchingBracket(Character currentBracket) {
