@@ -20,11 +20,13 @@ public class BalancedParentheses {
   private Character matchingBracket(Character currentBracket) {
     if (currentBracket.equals(')')) {
       return '(';
+    } else if (currentBracket.equals(']')) {
+      return '[';
     }
     return '{';
   }
 
   private boolean isClosingParentheses(Character parentheses) {
-    return parentheses.equals(')') || parentheses.equals('}');
+    return parentheses.equals(')') || parentheses.equals('}') || parentheses.equals(']');
   }
 }

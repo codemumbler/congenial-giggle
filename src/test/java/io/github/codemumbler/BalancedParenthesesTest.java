@@ -44,4 +44,9 @@ public class BalancedParenthesesTest {
   public void mixedBrackets_Unbalanced() {
     assertFalse(balancedParentheses.isBalanced("({)}"));
   }
+
+  @Test
+  public void squareBrackets() {
+    assertTrue(balancedParentheses.isBalanced("[]"));
+  }
 }
