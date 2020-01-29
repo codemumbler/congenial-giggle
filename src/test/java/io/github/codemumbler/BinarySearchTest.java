@@ -29,10 +29,10 @@ public class BinarySearchTest {
     assertThrows(NoSuchElementException.class, () -> binarySearch.search(1));
   }
 
-  //  @Test
-  //  public void multipleIntegers() {
-  //    binarySearch.add(1);
-  //    binarySearch.add(3);
-  //    assertEquals(1, binarySearch.search(1));
-  //  }
+  @Test
+  public void multipleIntegers() {
+    binarySearch.add(1);
+    binarySearch.add(3);
+    assertEquals(1, binarySearch.search(1));
+  }
 }
