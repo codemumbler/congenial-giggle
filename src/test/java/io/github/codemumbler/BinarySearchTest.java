@@ -35,4 +35,11 @@ public class BinarySearchTest {
     binarySearch.add(3);
     assertEquals(1, binarySearch.search(1));
   }
+
+  @Test
+  public void multipleIntegers_findLeftElement() {
+    binarySearch.add(3);
+    binarySearch.add(1);
+    assertEquals(1, binarySearch.search(1));
+  }
 }
