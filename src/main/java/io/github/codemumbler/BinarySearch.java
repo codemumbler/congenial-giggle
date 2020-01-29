@@ -7,14 +7,16 @@ public class BinarySearch<T extends Comparable<T>> {
   private BinaryNode head;
 
   public T search(T element) {
-    return search(head, element);
+    return search(head, element).getValue();
   }
 
-  private T search(BinaryNode node, T element) {
+  private BinaryNode search(BinaryNode node, T element) {
     if (node == null)
       throw new NoSuchElementException();
-    if (node.getValue().equals(element))
-      return element;
+    int compare = node.getValue().compareTo(element);
+    if (compare == 0) {
+      return node;
+    }
     if (node.getValue().compareTo(element) > 0) {
       return search(node.getLeftNode(), element);
     }
@@ -22,28 +24,38 @@ public class BinarySearch<T extends Comparable<T>> {
   }
 
   public void add(T element) {
-    head = addElement(head, element);
+    head = addElement(head, element, 0);
   }
 
-  private BinaryNode addElement(BinaryNode node, T element) {
+  private BinaryNode addElement(BinaryNode node, T element, int depth) {
     if (node == null) {
-      return new BinaryNode(element);
+      return new BinaryNode(element, depth);
     }
-    if (node.getValue().compareTo(element) > 0) {
-      node.setLeftNode(addElement(node.leftNode, element));
+    int compare = node.getValue().compareTo(element);
+    if (compare == 0) {
+      return node;
+    }
+    if (compare > 0) {
+      node.setLeftNode(addElement(node.leftNode, element, ++depth));
     } else {
-      node.setRightNode(addElement(node.rightNode, element));
+      node.setRightNode(addElement(node.rightNode, element, ++depth));
     }
     return node;
   }
 
+  public int depth(T element) {
+    return search(head, element).getDepth();
+  }
+
   private class BinaryNode {
     private final T value;
+    private int depth;
     private BinaryNode leftNode;
     private BinaryNode rightNode;
 
-    private BinaryNode(T element) {
+    private BinaryNode(T element, int depth) {
       this.value = element;
+      this.depth = depth;
     }
 
     private T getValue() {
@@ -64,6 +76,10 @@ public class BinarySearch<T extends Comparable<T>> {
 
     public BinaryNode getRightNode() {
       return this.rightNode;
+    }
+
+    public int getDepth() {
+      return this.depth;
     }
   }
 }
