@@ -37,16 +37,32 @@ public class BinarySearchTest {
   }
 
   @Test
-  public void multipleIntegers_findLeftElement() {
+  public void findLeftElement() {
     binarySearch.add(3);
     binarySearch.add(1);
     assertEquals(1, binarySearch.search(1));
   }
 
   @Test
-  public void multipleIntegers_findRightElement() {
+  public void findRightElement() {
     binarySearch.add(1);
     binarySearch.add(3);
     assertEquals(3, binarySearch.search(3));
+  }
+
+  @Test
+  public void findMiddleLeftElement() {
+    binarySearch.add(5);
+    binarySearch.add(3);
+    binarySearch.add(1);
+    assertEquals(3, binarySearch.search(3));
+  }
+
+  @Test
+  public void findDoubleLeftElement() {
+    binarySearch.add(5);
+    binarySearch.add(3);
+    binarySearch.add(1);
+    assertEquals(1, binarySearch.search(1));
   }
 }
