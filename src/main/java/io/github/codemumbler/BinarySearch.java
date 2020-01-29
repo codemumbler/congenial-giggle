@@ -15,7 +15,10 @@ public class BinarySearch<T extends Comparable<T>> {
       throw new NoSuchElementException();
     if (head.getValue().equals(element))
       return element;
-    return search(head.getLeftNode(), element);
+    if (head.getValue().compareTo(element) > 0) {
+      return search(head.getLeftNode(), element);
+    }
+    return search(head.getRightNode(), element);
   }
 
   public void add(T element) {
@@ -24,6 +27,8 @@ public class BinarySearch<T extends Comparable<T>> {
     } else {
       if (head.getValue().compareTo(element) > 0) {
         head.addLeftNode(element);
+      } else {
+        head.addRightNode(element);
       }
     }
   }
@@ -31,6 +36,7 @@ public class BinarySearch<T extends Comparable<T>> {
   private class BinaryNode {
     private final T value;
     private BinaryNode leftNode;
+    private BinaryNode rightNode;
 
     private BinaryNode(T element) {
       this.value = element;
@@ -46,6 +52,14 @@ public class BinarySearch<T extends Comparable<T>> {
 
     public BinaryNode getLeftNode() {
       return this.leftNode;
+    }
+
+    public void addRightNode(T element) {
+      this.rightNode = new BinaryNode(element);
+    }
+
+    public BinaryNode getRightNode() {
+      return this.rightNode;
     }
   }
 }
