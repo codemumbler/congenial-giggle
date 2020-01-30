@@ -67,6 +67,13 @@ public class BinarySearchTest {
   }
 
   @Test
+  public void sameElementTwice() {
+    binarySearch.add(1);
+    binarySearch.add(1);
+    assertEquals(1, binarySearch.search(1));
+  }
+
+  @Test
   public void findDepthOfElement() {
     for (int i = 0; i < 50; i++) {
       binarySearch.add(i);
