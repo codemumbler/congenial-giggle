@@ -23,4 +23,9 @@ public class RockPaperScissorsTest {
   public void rockBeatsScissorsForPlayerTwo() {
     assertEquals(2, rockPaperScissors.play("scissors", "rock"));
   }
+
+  @Test
+  public void scissorsBeatsPaperForPlayerOne() {
+    assertEquals(1, rockPaperScissors.play("scissors", "paper"));
+  }
 }
