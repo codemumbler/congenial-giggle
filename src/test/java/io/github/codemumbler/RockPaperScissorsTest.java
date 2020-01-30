@@ -16,16 +16,21 @@ public class RockPaperScissorsTest {
 
   @Test
   public void rockBeatsScissorsForPlayerOne() {
-    assertEquals(1, rockPaperScissors.play("rock", "scissors"));
+    assertEquals(1, rockPaperScissors.play(RockPaperScissors.PLAYS.ROCK, RockPaperScissors.PLAYS.SCISSORS));
   }
 
   @Test
   public void rockBeatsScissorsForPlayerTwo() {
-    assertEquals(2, rockPaperScissors.play("scissors", "rock"));
+    assertEquals(2, rockPaperScissors.play(RockPaperScissors.PLAYS.SCISSORS, RockPaperScissors.PLAYS.ROCK));
   }
 
   @Test
   public void scissorsBeatsPaperForPlayerOne() {
-    assertEquals(1, rockPaperScissors.play("scissors", "paper"));
+    assertEquals(1, rockPaperScissors.play(RockPaperScissors.PLAYS.SCISSORS, RockPaperScissors.PLAYS.PAPER));
   }
+
+  //  @Test
+  //  public void scissorsBeatsPaperForPlayerTwo() {
+  //    assertEquals(2, rockPaperScissors.play(RockPaperScissors.PLAYS.PAPER, RockPaperScissors.PLAYS.SCISSORS));
+  //  }
 }
