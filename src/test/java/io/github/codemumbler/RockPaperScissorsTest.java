@@ -33,4 +33,9 @@ public class RockPaperScissorsTest {
   public void paperBeatsRockForPlayerOne() {
     assertEquals(1, rockPaperScissors.play(RockPaperScissors.PLAYS.PAPER, RockPaperScissors.PLAYS.ROCK));
   }
+
+  @Test
+  public void drawIfPlaysAreTheSame() {
+    assertEquals(0, rockPaperScissors.play(RockPaperScissors.PLAYS.PAPER, RockPaperScissors.PLAYS.PAPER));
+  }
 }
