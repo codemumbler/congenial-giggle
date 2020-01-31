@@ -2,49 +2,32 @@ package io.github.codemumbler;
 
 public class MarsRover {
 
-  public enum DIRECTION {N, E, W}
-
-  static class Vector {
-    private DIRECTION direction;
-    private int x;
-    private int y;
-
-    public Vector(int x, int y, DIRECTION d) {
-      this.x = x;
-      this.y = y;
-      this.direction = d;
-    }
-
-    @Override
-    public String toString() {
-      return "Vector{" + "direction=" + direction + ", x=" + x + ", y=" + y + '}';
-    }
-  }
-
-  private Vector coordinates;
+  private MarsRoverVector coordinates;
 
   public MarsRover() {
-    this(0, 0, DIRECTION.N);
+    this(0, 0, MarsRoverVector.DIRECTION.N);
   }
 
-  public MarsRover(int x, int y, DIRECTION direction) {
-    this.coordinates = new Vector(x, y, direction);
+  public MarsRover(int x, int y, MarsRoverVector.DIRECTION direction) {
+    this.coordinates = new MarsRoverVector(x, y, direction);
   }
 
-  public void command(char commands) {
+  public void execute(char commands) {
     if (commands == 'f') {
-      if (getPosition().direction.equals(DIRECTION.N)) {
-        getPosition().y++;
+      //      Command command = new MoveForwardCommand(getPosition());
+      //      setPosition(command.execute());
+      if (coordinates.getDirection().equals(MarsRoverVector.DIRECTION.N)) {
+        coordinates = new MarsRoverVector(coordinates.getX(), coordinates.getY() + 1, coordinates.getDirection());
       }
     }
     if (commands == 'l') {
-      if (getPosition().direction.equals(DIRECTION.N)) {
-        getPosition().direction = DIRECTION.W;
+      if (coordinates.getDirection().equals(MarsRoverVector.DIRECTION.N)) {
+        coordinates = new MarsRoverVector(coordinates.getX(), coordinates.getY(), MarsRoverVector.DIRECTION.W);
       }
     }
   }
 
-  public Vector getPosition() {
+  public MarsRoverVector getPosition() {
     return this.coordinates;
   }
 }

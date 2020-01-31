@@ -21,19 +21,19 @@ public class MarsRoverTest {
 
   @Test
   public void setStartPosition() {
-    marsRover = new MarsRover(1, 1, MarsRover.DIRECTION.E);
+    marsRover = new MarsRover(1, 1, MarsRoverVector.DIRECTION.E);
     assertEquals("Vector{direction=E, x=1, y=1}", marsRover.getPosition().toString());
   }
 
   @Test
   public void moveForward() {
-    marsRover.command('f');
+    marsRover.execute('f');
     assertEquals("Vector{direction=N, x=0, y=1}", marsRover.getPosition().toString());
   }
 
   @Test
   public void turnLeft() {
-    marsRover.command('l');
+    marsRover.execute('l');
     assertEquals("Vector{direction=W, x=0, y=0}", marsRover.getPosition().toString());
   }
 }
