@@ -15,7 +15,13 @@ public class MarsRoverTest {
   }
 
   @Test
-  public void startPosition() {
-    assertEquals(new int[] {0, 0}, marsRover.getPosition());
+  public void getPosition() {
+    assertEquals("Point{x=0, y=0}", marsRover.getPosition().toString());
+  }
+
+  @Test
+  public void setStartPosition() {
+    marsRover = new MarsRover(1, 1);
+    assertEquals("Point{x=1, y=1}", marsRover.getPosition().toString());
   }
 }
