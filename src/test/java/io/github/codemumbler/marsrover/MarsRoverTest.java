@@ -42,4 +42,10 @@ public class MarsRoverTest {
     marsRover.execute('r');
     assertEquals("Vector{direction=E, x=0, y=0}", marsRover.getPosition().toString());
   }
+
+  @Test
+  public void moveBackwards() {
+    marsRover.execute('b');
+    assertEquals("Vector{direction=N, x=0, y=-1}", marsRover.getPosition().toString());
+  }
 }

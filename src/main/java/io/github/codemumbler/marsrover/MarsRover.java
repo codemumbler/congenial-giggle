@@ -17,6 +17,9 @@ public class MarsRover {
     if (commands == 'f') {
       command = new MoveForward();
     }
+    if (commands == 'b') {
+      command = new MoveBackward();
+    }
     if (commands == 'l') {
       command = new TurnLeft();
     }

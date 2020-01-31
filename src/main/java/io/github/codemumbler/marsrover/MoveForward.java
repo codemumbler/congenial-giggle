@@ -14,6 +14,5 @@ class MoveForward implements MarsRoverStrategy {
       default:
         return new Vector(coordinates.getX() + 1, coordinates.getY(), coordinates.getDirection());
     }
-
   }
 }
