@@ -49,7 +49,7 @@ public class BinarySearch<T extends Comparable<T>> {
 
   private class BinaryNode {
     private final T value;
-    private int depth;
+    private final int depth;
     private BinaryNode leftNode;
     private BinaryNode rightNode;
 

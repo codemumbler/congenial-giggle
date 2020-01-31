@@ -1,4 +1,4 @@
-package io.github.codemumbler;
+package io.github.codemumbler.marsrover;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class MarsRoverTest {
 
   @Test
   public void setStartPosition() {
-    marsRover = new MarsRover(1, 1, MarsRoverVector.DIRECTION.E);
+    marsRover = new MarsRover(1, 1, Vector.DIRECTION.E);
     assertEquals("Vector{direction=E, x=1, y=1}", marsRover.getPosition().toString());
   }
 
