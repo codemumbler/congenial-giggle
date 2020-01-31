@@ -4,13 +4,12 @@ public class MarsRover {
 
   public enum DIRECTION {N, E}
 
-
-  static class Point {
+  static class Vector {
     private final DIRECTION direction;
     private int x;
     private int y;
 
-    public Point(int x, int y, DIRECTION d) {
+    public Vector(int x, int y, DIRECTION d) {
       this.x = x;
       this.y = y;
       this.direction = d;
@@ -18,22 +17,30 @@ public class MarsRover {
 
     @Override
     public String toString() {
-      return "Point{" + "direction=" + direction + ", x=" + x + ", y=" + y + '}';
+      return "Vector{" + "direction=" + direction + ", x=" + x + ", y=" + y + '}';
     }
   }
 
 
-  private Point coordinates;
+  private Vector coordinates;
 
   public MarsRover() {
     this(0, 0, DIRECTION.N);
   }
 
   public MarsRover(int x, int y, DIRECTION direction) {
-    this.coordinates = new Point(x, y, direction);
+    this.coordinates = new Vector(x, y, direction);
   }
 
-  public Point getPosition() {
+  public void command(char commands) {
+    if (commands == 'f') {
+      if (getPosition().direction.equals(DIRECTION.N)) {
+        getPosition().y++;
+      }
+    }
+  }
+
+  public Vector getPosition() {
     return this.coordinates;
   }
 }

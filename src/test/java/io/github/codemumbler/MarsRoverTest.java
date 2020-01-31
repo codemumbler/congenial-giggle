@@ -16,12 +16,18 @@ public class MarsRoverTest {
 
   @Test
   public void getPosition() {
-    assertEquals("Point{direction=N, x=0, y=0}", marsRover.getPosition().toString());
+    assertEquals("Vector{direction=N, x=0, y=0}", marsRover.getPosition().toString());
   }
 
   @Test
   public void setStartPosition() {
     marsRover = new MarsRover(1, 1, MarsRover.DIRECTION.E);
-    assertEquals("Point{direction=E, x=1, y=1}", marsRover.getPosition().toString());
+    assertEquals("Vector{direction=E, x=1, y=1}", marsRover.getPosition().toString());
+  }
+
+  @Test
+  public void moveForward() {
+    marsRover.command('f');
+    assertEquals("Vector{direction=N, x=0, y=1}", marsRover.getPosition().toString());
   }
 }
