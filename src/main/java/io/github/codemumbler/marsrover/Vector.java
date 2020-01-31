@@ -2,7 +2,7 @@ package io.github.codemumbler.marsrover;
 
 class Vector {
 
-  enum DIRECTION {N, E, W}
+  enum DIRECTION {N, E, S, W}
 
 
   private final DIRECTION direction;
