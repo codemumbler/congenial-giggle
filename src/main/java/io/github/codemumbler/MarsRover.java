@@ -2,10 +2,10 @@ package io.github.codemumbler;
 
 public class MarsRover {
 
-  public enum DIRECTION {N, E}
+  public enum DIRECTION {N, E, W}
 
   static class Vector {
-    private final DIRECTION direction;
+    private DIRECTION direction;
     private int x;
     private int y;
 
@@ -21,7 +21,6 @@ public class MarsRover {
     }
   }
 
-
   private Vector coordinates;
 
   public MarsRover() {
@@ -36,6 +35,11 @@ public class MarsRover {
     if (commands == 'f') {
       if (getPosition().direction.equals(DIRECTION.N)) {
         getPosition().y++;
+      }
+    }
+    if (commands == 'l') {
+      if (getPosition().direction.equals(DIRECTION.N)) {
+        getPosition().direction = DIRECTION.W;
       }
     }
   }
