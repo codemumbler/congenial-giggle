@@ -5,6 +5,8 @@ class MoveBackward implements MarsRoverStrategy {
   @Override
   public Vector execute(Vector coordinates) {
     switch (coordinates.getDirection()) {
+      case S:
+        return new Vector(coordinates.getX(), coordinates.getY() + 1, coordinates.getDirection());
       default:
         return new Vector(coordinates.getX(), coordinates.getY() - 1, coordinates.getDirection());
     }
