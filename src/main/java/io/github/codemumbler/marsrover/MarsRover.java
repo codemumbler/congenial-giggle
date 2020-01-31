@@ -13,15 +13,14 @@ public class MarsRover {
   }
 
   public void execute(char commands) {
+    MarsRoverStrategy command = null;
     if (commands == 'f') {
-      MarsRoverStrategy command = new MoveForward();
-      coordinates = command.execute(getPosition());
+      command = new MoveForward();
     }
     if (commands == 'l') {
-      if (coordinates.getDirection().equals(Vector.DIRECTION.N)) {
-        coordinates = new Vector(coordinates.getX(), coordinates.getY(), Vector.DIRECTION.W);
-      }
+      command = new TurnLeft();
     }
+    coordinates = command.execute(getPosition());
   }
 
   public Vector getPosition() {
