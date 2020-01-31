@@ -25,4 +25,10 @@ class MoveBackwardTest {
     Vector vector = new Vector(0, 0, Vector.DIRECTION.S);
     assertEquals("Vector{direction=S, x=0, y=1}", moveBackward.execute(vector).toString());
   }
+
+  @Test
+  public void moveForwardEast() {
+    Vector vector = new Vector(0, 0, Vector.DIRECTION.E);
+    assertEquals("Vector{direction=E, x=-1, y=0}", moveBackward.execute(vector).toString());
+  }
 }
