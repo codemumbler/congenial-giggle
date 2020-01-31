@@ -4,7 +4,6 @@ class Vector {
 
   enum DIRECTION {N, E, S, W}
 
-
   private final DIRECTION direction;
   private final int x;
   private final int y;
