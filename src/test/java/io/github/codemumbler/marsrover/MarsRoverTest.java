@@ -36,4 +36,10 @@ public class MarsRoverTest {
     marsRover.execute('l');
     assertEquals("Vector{direction=W, x=0, y=0}", marsRover.getPosition().toString());
   }
+
+  @Test
+  public void turnRight() {
+    marsRover.execute('r');
+    assertEquals("Vector{direction=E, x=0, y=0}", marsRover.getPosition().toString());
+  }
 }

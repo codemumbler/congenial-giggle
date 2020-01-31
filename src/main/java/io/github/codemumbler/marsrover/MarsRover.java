@@ -20,6 +20,9 @@ public class MarsRover {
     if (commands == 'l') {
       command = new TurnLeft();
     }
+    if (commands == 'r') {
+      command = new TurnRight();
+    }
     coordinates = command.execute(getPosition());
   }
 
