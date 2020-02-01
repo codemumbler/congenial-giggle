@@ -48,4 +48,22 @@ public class MarsRoverTest {
     marsRover.execute('b');
     assertEquals("Vector{direction=N, x=0, y=-1}", marsRover.getPosition().toString());
   }
+
+  @Test
+  public void unknownCommandNothingHappens() {
+    marsRover.execute('X');
+    assertEquals("Vector{direction=N, x=0, y=0}", marsRover.getPosition().toString());
+  }
+
+  @Test
+  public void noCommands() {
+    marsRover.execute("");
+    assertEquals("Vector{direction=N, x=0, y=0}", marsRover.getPosition().toString());
+  }
+
+  @Test
+  public void multipleCommands() {
+    marsRover.execute("fblflflflfr");
+    assertEquals("Vector{direction=E, x=0, y=0}", marsRover.getPosition().toString());
+  }
 }

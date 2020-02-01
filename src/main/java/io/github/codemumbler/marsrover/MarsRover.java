@@ -12,24 +12,32 @@ public class MarsRover {
     this.coordinates = new Vector(x, y, direction);
   }
 
-  public void execute(char commands) {
-    MarsRoverStrategy command = null;
-    if (commands == 'f') {
-      command = new MoveForward();
+  public void execute(char... commands) {
+    for (char command : commands) {
+      MarsRoverStrategy commandObject = null;
+      if (command == 'f') {
+        commandObject = new MoveForward();
+      }
+      if (command == 'b') {
+        commandObject = new MoveBackward();
+      }
+      if (command == 'l') {
+        commandObject = new TurnLeft();
+      }
+      if (command == 'r') {
+        commandObject = new TurnRight();
+      }
+      if (commandObject != null) {
+        coordinates = commandObject.execute(getPosition());
+      }
     }
-    if (commands == 'b') {
-      command = new MoveBackward();
-    }
-    if (commands == 'l') {
-      command = new TurnLeft();
-    }
-    if (commands == 'r') {
-      command = new TurnRight();
-    }
-    coordinates = command.execute(getPosition());
   }
 
   public Vector getPosition() {
     return this.coordinates;
+  }
+
+  public void execute(String commands) {
+    execute(commands.toCharArray());
   }
 }
