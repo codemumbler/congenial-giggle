@@ -13,6 +13,7 @@ abstract class Move implements Command {
         return new Vector(coordinates.getX(), newCoordinateValue(coordinates.getY() - getCoordinateIncrement()), coordinates.getDirection());
       case W:
         return new Vector(newCoordinateValue(coordinates.getX() - getCoordinateIncrement()), coordinates.getY(), coordinates.getDirection());
+      case E:
       default:
         return new Vector(newCoordinateValue(coordinates.getX() + getCoordinateIncrement()), coordinates.getY(), coordinates.getDirection());
     }
