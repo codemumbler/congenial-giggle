@@ -1,11 +1,9 @@
 package io.github.codemumbler.marsrover;
 
-class TurnRight implements Command {
+class TurnRight extends Turn {
 
   @Override
-  public Vector execute(Vector coordinates) {
-    int newOrdinal = ((coordinates.getDirection().ordinal() + 1) % 4);
-    Vector.DIRECTION newDirection = Vector.DIRECTION.values()[newOrdinal];
-    return new Vector(coordinates.getX(), coordinates.getY(), newDirection);
+  protected int getRotationalValue() {
+    return 1;
   }
 }
