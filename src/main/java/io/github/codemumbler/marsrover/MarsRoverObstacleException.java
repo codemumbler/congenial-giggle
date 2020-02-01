@@ -9,7 +9,7 @@ public class MarsRoverObstacleException extends RuntimeException {
     this.commandsCompleted = commandsCompleted;
   }
 
-  String getCommandsCompleted() {
+  public String getCommandsCompleted() {
     return this.commandsCompleted;
   }
 }

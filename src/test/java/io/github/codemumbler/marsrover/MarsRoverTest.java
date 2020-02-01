@@ -104,4 +104,10 @@ public class MarsRoverTest {
       assertEquals("f", e.getCommandsCompleted());
     }
   }
+
+  @Test
+  public void wrapAroundCoordinates() {
+    marsRover.execute("lf");
+    assertEquals("Vector{direction=W, x=100, y=0}", marsRover.getPosition().toString());
+  }
 }
