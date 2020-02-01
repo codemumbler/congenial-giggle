@@ -17,7 +17,7 @@ class MoveBackwardTest {
   @Test
   public void moveBackwardNorth() {
     Vector vector = new Vector(0, 0, Vector.DIRECTION.N);
-    assertEquals("Vector{direction=N, x=0, y=-1}", moveBackward.execute(vector).toString());
+    assertEquals("Vector{direction=N, x=0, y=100}", moveBackward.execute(vector).toString());
   }
 
   @Test
@@ -29,7 +29,7 @@ class MoveBackwardTest {
   @Test
   public void moveBackwardEast() {
     Vector vector = new Vector(0, 0, Vector.DIRECTION.E);
-    assertEquals("Vector{direction=E, x=-1, y=0}", moveBackward.execute(vector).toString());
+    assertEquals("Vector{direction=E, x=100, y=0}", moveBackward.execute(vector).toString());
   }
 
   @Test

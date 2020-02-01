@@ -1,18 +1,24 @@
 package io.github.codemumbler.marsrover;
 
-class MoveBackward implements Command {
+class MoveBackward extends Move {
 
   @Override
-  public Vector execute(Vector coordinates) {
-    switch (coordinates.getDirection()) {
-      case S:
-        return new Vector(coordinates.getX(), coordinates.getY() + 1, coordinates.getDirection());
-      case E:
-        return new Vector(coordinates.getX() - 1, coordinates.getY(), coordinates.getDirection());
-      case W:
-        return new Vector(coordinates.getX() + 1, coordinates.getY(), coordinates.getDirection());
-      default:
-        return new Vector(coordinates.getX(), coordinates.getY() - 1, coordinates.getDirection());
-    }
+  protected int getNorthIncrement() {
+    return -1;
+  }
+
+  @Override
+  protected int getSouthIncrement() {
+    return 1;
+  }
+
+  @Override
+  protected int getWestIncrement() {
+    return 1;
+  }
+
+  @Override
+  protected int getEastIncrement() {
+    return -1;
   }
 }
