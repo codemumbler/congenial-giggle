@@ -1,6 +1,6 @@
 package io.github.codemumbler.marsrover;
 
-interface MarsRoverStrategy {
+interface Command {
 
   Vector execute(Vector coordinates);
 }

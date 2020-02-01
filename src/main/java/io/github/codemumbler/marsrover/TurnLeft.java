@@ -1,6 +1,6 @@
 package io.github.codemumbler.marsrover;
 
-class TurnLeft implements MarsRoverStrategy {
+class TurnLeft implements Command {
 
   @Override
   public Vector execute(Vector coordinates) {

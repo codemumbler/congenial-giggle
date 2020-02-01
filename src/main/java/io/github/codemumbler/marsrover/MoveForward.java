@@ -1,6 +1,6 @@
 package io.github.codemumbler.marsrover;
 
-class MoveForward implements MarsRoverStrategy {
+class MoveForward implements Command {
 
   @Override
   public Vector execute(Vector coordinates) {

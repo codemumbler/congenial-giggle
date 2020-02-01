@@ -20,7 +20,7 @@ public class MarsRover {
 
   public void execute(char... commands) {
     for (char command : commands) {
-      MarsRoverStrategy commandObject = null;
+      Command commandObject = null;
       if (command == FORWARD && isClear(new MoveForward())) {
         commandObject = new MoveForward();
       }
@@ -39,7 +39,7 @@ public class MarsRover {
     }
   }
 
-  private boolean isClear(MarsRoverStrategy command) {
+  private boolean isClear(Command command) {
     return sensor.isClear(this.coordinates, command);
   }
 
