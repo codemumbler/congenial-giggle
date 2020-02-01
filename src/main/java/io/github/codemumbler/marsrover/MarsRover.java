@@ -8,6 +8,7 @@ public class MarsRover {
   private static final char TURN_RIGHT = 'r';
   private Vector coordinates;
   private final Sensor sensor;
+  private final StringBuilder commandsCompleted = new StringBuilder();
 
   public MarsRover(Sensor sensor) {
     this(0, 0, Vector.DIRECTION.N, sensor);
@@ -35,12 +36,16 @@ public class MarsRover {
       }
       if (commandObject != null) {
         coordinates = commandObject.execute(getPosition());
+        commandsCompleted.append(command);
       }
     }
   }
 
   private boolean isClear(Command command) {
-    return sensor.isClear(this.coordinates, command);
+    if (!sensor.isClear(this.coordinates, command)) {
+      throw new MarsRoverObstacleException(commandsCompleted.toString());
+    }
+    return true;
   }
 
   public Vector getPosition() {

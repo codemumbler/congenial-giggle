@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MarsRoverTest {
 
@@ -74,15 +75,33 @@ public class MarsRoverTest {
   public void obstacleDetectedForward() {
     sensor = (vector, command) -> false;
     marsRover = new MarsRover(sensor);
-    marsRover.execute('f');
-    assertEquals("Vector{direction=N, x=0, y=0}", marsRover.getPosition().toString());
+    assertThrows(MarsRoverObstacleException.class, () -> marsRover.execute('f'));
   }
 
   @Test
   public void obstacleDetectedBackwards() {
     sensor = (vector, command) -> false;
     marsRover = new MarsRover(0, 1, Vector.DIRECTION.N, sensor);
-    marsRover.execute('b');
-    assertEquals("Vector{direction=N, x=0, y=1}", marsRover.getPosition().toString());
+    assertThrows(MarsRoverObstacleException.class, () -> marsRover.execute('b'));
+  }
+
+  @Test
+  public void obstacleDetectedAfterFirstCommand() {
+    sensor = new Sensor() {
+
+      int count = 0;
+
+      @Override
+      public boolean isClear(Vector vector, Command command) {
+        count++;
+        return (count <= 1);
+      }
+    };
+    marsRover = new MarsRover(sensor);
+    try {
+      marsRover.execute("ff");
+    } catch (MarsRoverObstacleException e) {
+      assertEquals("f", e.getCommandsCompleted());
+    }
   }
 }
