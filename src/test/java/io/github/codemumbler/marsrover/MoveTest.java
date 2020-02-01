@@ -14,23 +14,8 @@ class MoveTest {
     move = new Move() {
 
       @Override
-      protected int getNorthIncrement() {
+      protected int getCoordinateIncrement() {
         return 1;
-      }
-
-      @Override
-      protected int getSouthIncrement() {
-        return -1;
-      }
-
-      @Override
-      protected int getWestIncrement() {
-        return 1;
-      }
-
-      @Override
-      protected int getEastIncrement() {
-        return -1;
       }
     };
   }

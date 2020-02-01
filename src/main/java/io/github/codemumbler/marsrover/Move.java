@@ -8,13 +8,13 @@ abstract class Move implements Command {
   public Vector execute(Vector coordinates) {
     switch (coordinates.getDirection()) {
       case N:
-        return new Vector(coordinates.getX(), newCoordinateValue(coordinates.getY() + getNorthIncrement()), coordinates.getDirection());
+        return new Vector(coordinates.getX(), newCoordinateValue(coordinates.getY() + getCoordinateIncrement()), coordinates.getDirection());
       case S:
-        return new Vector(coordinates.getX(), newCoordinateValue(coordinates.getY() + getSouthIncrement()), coordinates.getDirection());
+        return new Vector(coordinates.getX(), newCoordinateValue(coordinates.getY() - getCoordinateIncrement()), coordinates.getDirection());
       case W:
-        return new Vector(newCoordinateValue(coordinates.getX() + getWestIncrement()), coordinates.getY(), coordinates.getDirection());
+        return new Vector(newCoordinateValue(coordinates.getX() - getCoordinateIncrement()), coordinates.getY(), coordinates.getDirection());
       default:
-        return new Vector(newCoordinateValue(coordinates.getX() + getEastIncrement()), coordinates.getY(), coordinates.getDirection());
+        return new Vector(newCoordinateValue(coordinates.getX() + getCoordinateIncrement()), coordinates.getY(), coordinates.getDirection());
     }
   }
 
@@ -22,11 +22,5 @@ abstract class Move implements Command {
     return nextCoordinate < 0 ? MAP_SIZE : (nextCoordinate) % (MAP_SIZE + 1);
   }
 
-  protected abstract int getNorthIncrement();
-
-  protected abstract int getSouthIncrement();
-
-  protected abstract int getWestIncrement();
-
-  protected abstract int getEastIncrement();
+  protected abstract int getCoordinateIncrement();
 }
