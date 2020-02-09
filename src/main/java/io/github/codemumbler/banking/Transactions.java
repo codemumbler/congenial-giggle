@@ -3,27 +3,27 @@ package io.github.codemumbler.banking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Transactions {
+class Transactions {
 
-  private List<Amount> deposits = new ArrayList<>();
-  private List<Amount> withdrawls = new ArrayList<>();
+  private List<Amount> amounts = new ArrayList<>();
 
-  public void addDeposit(Amount amount) {
-    deposits.add(amount);
+  void addDeposit(Amount amount) {
+    amounts.add(amount);
   }
 
-  public void addWithdrawl(Amount amount) {
-    withdrawls.add(amount);
+  void addWithdrawl(Amount amount) {
+    amounts.add(amount);
   }
 
-  public double balance() {
+  double balance() {
     double balance = 0d;
-    for (Amount amount : deposits) {
+    for (Amount amount : amounts) {
       balance += amount.value();
     }
-    for (Amount amount : withdrawls) {
-      balance -= amount.value();
-    }
     return balance;
+  }
+
+  public List<Amount> history() {
+    return amounts;
   }
 }

@@ -1,14 +1,22 @@
 package io.github.codemumbler.banking;
 
-public class Amount {
+import java.time.Instant;
+
+class Amount {
 
   private final double value;
+  private final Instant date;
 
-  public Amount(double amount) {
+  Amount(double amount) {
     this.value = amount;
+    this.date = BankClock.getInstance().currentTime();
   }
 
-  public double value() {
+  double value() {
     return value;
+  }
+
+  Instant date() {
+    return date;
   }
 }

@@ -4,15 +4,19 @@ public class Account {
 
   private Transactions transactions = new Transactions();
 
-  public void deposit(Amount amount) {
-    transactions.addDeposit(amount);
+  public void deposit(double amount) {
+    transactions.addDeposit(new Amount(amount));
   }
 
   public double balance() {
     return transactions.balance();
   }
 
-  public void withdrawl(Amount amounts) {
-    transactions.addWithdrawl(amounts);
+  public void withdrawl(double amount) {
+    transactions.addWithdrawl(new Amount(-1d * amount));
+  }
+
+  public String printStatement() {
+    return new Statement(transactions.history()).toString();
   }
 }
