@@ -5,7 +5,11 @@ public class Account {
   private Transactions transactions = new Transactions();
 
   public void deposit(double amount) {
-    transactions.addDeposit(new Amount(amount));
+    addtransaction(amount);
+  }
+
+  private void addtransaction(double amount) {
+    transactions.addAmount(new Amount(amount));
   }
 
   public double balance() {
@@ -13,7 +17,7 @@ public class Account {
   }
 
   public void withdrawl(double amount) {
-    transactions.addWithdrawl(new Amount(-1d * amount));
+    addtransaction(-1d * amount);
   }
 
   public String printStatement() {

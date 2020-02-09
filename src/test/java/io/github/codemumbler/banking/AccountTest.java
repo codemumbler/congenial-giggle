@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTest {
 
-  public static final double ONE_HUNDRED = 100.0;
+  private static final double ONE_HUNDRED = 100.0;
   private Account account;
 
   @BeforeEach
