@@ -32,4 +32,11 @@ public class AccountTest {
     account.deposit(OneHundred);
     assertEquals(200.0, account.balance());
   }
+
+  @Test
+  public void withdrawl() {
+    account.deposit(OneHundred);
+    account.withdrawl(OneHundred);
+    assertEquals(0.0, account.balance());
+  }
 }
