@@ -1,14 +1,21 @@
 package io.github.codemumbler.banking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
 
-  private Amount amount;
+  private List<Amount> transactions = new ArrayList<>();
 
   public void deposit(Amount amount) {
-    this.amount = amount;
+    transactions.add(amount);
   }
 
   public double balance() {
-    return this.amount.value();
+    double balance = 0d;
+    for (Amount amount : transactions) {
+      balance += amount.value();
+    }
+    return balance;
   }
 }
