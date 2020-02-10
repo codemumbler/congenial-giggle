@@ -1,4 +1,4 @@
-package io.github.codemumbler;
+package io.github.codemumbler.greeter;
 
 import java.util.Calendar;
 import java.util.logging.Level;

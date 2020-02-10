@@ -1,4 +1,4 @@
-package io.github.codemumbler;
+package io.github.codemumbler.balancedparentheses;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

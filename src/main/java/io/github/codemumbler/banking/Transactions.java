@@ -5,7 +5,7 @@ import java.util.List;
 
 class Transactions {
 
-  private List<Amount> amounts = new ArrayList<>();
+  private final List<Amount> amounts = new ArrayList<>();
 
   double balance() {
     double balance = 0d;

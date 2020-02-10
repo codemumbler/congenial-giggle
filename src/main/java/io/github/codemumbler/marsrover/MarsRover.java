@@ -6,9 +6,10 @@ public class MarsRover {
   private static final char BACKWARD = 'b';
   private static final char TURN_LEFT = 'l';
   private static final char TURN_RIGHT = 'r';
+
   private Vector coordinates;
   private final Sensor sensor;
-  private final StringBuilder commandsCompleted = new StringBuilder();
+  private final CommandHistory commandHistory;
 
   public MarsRover(Sensor sensor) {
     this(0, 0, Vector.DIRECTION.N, sensor);
@@ -17,15 +18,13 @@ public class MarsRover {
   public MarsRover(int x, int y, Vector.DIRECTION direction, Sensor sensor) {
     this.coordinates = new Vector(x, y, direction);
     this.sensor = sensor;
+    this.commandHistory = new CommandHistory();
   }
 
   public void execute(char... commands) {
     for (char command : commands) {
-      Command commandObject = buildCommand(command);
-      if (commandObject != null) {
-        coordinates = commandObject.execute(getPosition());
-        commandsCompleted.append(command);
-      }
+      executeCommand(buildCommand(command));
+      commandHistory.addCompletedCommand(command);
     }
   }
 
@@ -37,32 +36,37 @@ public class MarsRover {
     execute(commands.toCharArray());
   }
 
+  private void executeCommand(Command commandObject) {
+    if (commandObject != null) {
+      coordinates = commandObject.execute(getPosition());
+    }
+  }
+
   private Command buildCommand(char command) {
-    if (command == FORWARD) {
-      return checkAndMoveForward();
+    switch (command) {
+      case FORWARD:
+        return checkAndMoveForward();
+      case BACKWARD:
+        return checkAndMoveBackwards();
+      case TURN_LEFT:
+        return new TurnLeft();
+      case TURN_RIGHT:
+        return new TurnRight();
+      default:
+        return null;
     }
-    if (command == BACKWARD) {
-      return checkAndMoveBackwards();
-    }
-    if (command == TURN_LEFT) {
-      return new TurnLeft();
-    }
-    if (command == TURN_RIGHT) {
-      return new TurnRight();
-    }
-    return null;
   }
 
   private Command checkAndMoveBackwards() {
     if (isNotClear(new MoveBackward())) {
-      throw new MarsRoverObstacleException(commandsCompleted.toString());
+      throw new MarsRoverObstacleException(commandHistory.history.toString());
     }
     return new MoveBackward();
   }
 
   private Command checkAndMoveForward() {
     if (isNotClear(new MoveForward())) {
-      throw new MarsRoverObstacleException(commandsCompleted.toString());
+      throw new MarsRoverObstacleException(commandHistory.history.toString());
     }
     return new MoveForward();
   }

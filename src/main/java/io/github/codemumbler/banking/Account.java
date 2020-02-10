@@ -2,7 +2,7 @@ package io.github.codemumbler.banking;
 
 public class Account {
 
-  private Transactions transactions = new Transactions();
+  private final Transactions transactions = new Transactions();
 
   public void deposit(double amount) {
     addtransaction(amount);

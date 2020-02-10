@@ -1,4 +1,4 @@
-package io.github.codemumbler;
+package io.github.codemumbler.fizzbuzz;
 
 public class FizzBuzz {
 

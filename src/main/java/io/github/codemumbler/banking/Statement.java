@@ -6,7 +6,7 @@ import java.util.List;
 
 class Statement {
 
-  private List<Amount> transactionHistory;
+  private final List<Amount> transactionHistory;
 
   Statement(List<Amount> transactionHistory) {
     this.transactionHistory = transactionHistory;

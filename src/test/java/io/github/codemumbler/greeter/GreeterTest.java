@@ -1,4 +1,4 @@
-package io.github.codemumbler;
+package io.github.codemumbler.greeter;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
