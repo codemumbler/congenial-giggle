@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTest {
 
-  private static final double ONE_HUNDRED = 100.0;
+  private Amount oneHundred;
   private Account account;
 
   @BeforeEach
@@ -23,6 +23,7 @@ public class AccountTest {
         return Instant.ofEpochSecond(1581217528L);
       }
     });
+    oneHundred = new Amount(100.0);
   }
 
   @AfterEach
@@ -32,7 +33,7 @@ public class AccountTest {
 
   @Test
   public void deposit() {
-    account.deposit(ONE_HUNDRED);
+    account.deposit(oneHundred);
     assertEquals(100.0, account.balance());
   }
 
@@ -43,29 +44,38 @@ public class AccountTest {
 
   @Test
   public void twoDeposits() {
-    account.deposit(ONE_HUNDRED);
-    account.deposit(ONE_HUNDRED);
+    account.deposit(oneHundred);
+    account.deposit(oneHundred);
     assertEquals(200.0, account.balance());
   }
 
   @Test
   public void withdrawl() {
-    account.deposit(ONE_HUNDRED);
-    account.withdrawl(ONE_HUNDRED);
+    account.deposit(oneHundred);
+    account.withdrawl(oneHundred);
     assertEquals(0.0, account.balance());
   }
 
   @Test
   public void printStatement() {
-    account.deposit(ONE_HUNDRED);
-    assertEquals("02/08/2020 $100.00 $100.00" + System.lineSeparator(), account.printStatement());
+    account.deposit(oneHundred);
+    assertEquals("Date\tAmount\tBalance"
+        + System.lineSeparator()
+        + "02/08/2020\t$100.00\t$100.00"
+        + System.lineSeparator(),
+        account.printStatement());
   }
 
   @Test
   public void printStatementForDualTransaction() {
-    account.deposit(ONE_HUNDRED);
-    account.withdrawl(25d);
-    assertEquals("02/08/2020 $100.00 $100.00" + System.lineSeparator() + "02/08/2020 ($25.00) $75.00" + System.lineSeparator(),
+    account.deposit(oneHundred);
+    account.withdrawl(new Amount(25d));
+    assertEquals("Date\tAmount\tBalance"
+            + System.lineSeparator()
+            + "02/08/2020\t$100.00\t$100.00"
+            + System.lineSeparator()
+            + "02/08/2020\t($25.00)\t$75.00"
+            + System.lineSeparator(),
         account.printStatement());
   }
 }

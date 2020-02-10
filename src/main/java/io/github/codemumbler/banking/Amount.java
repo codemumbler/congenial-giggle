@@ -2,14 +2,19 @@ package io.github.codemumbler.banking;
 
 import java.time.Instant;
 
-class Amount {
+public class Amount {
 
   private final double value;
   private final Instant date;
 
-  Amount(double amount) {
+  public Amount(double amount) {
     this.value = amount;
     this.date = BankClock.getInstance().currentTime();
+  }
+
+  private Amount(double amount, Instant date) {
+    this.value = amount;
+    this.date = date;
   }
 
   double value() {
@@ -18,5 +23,9 @@ class Amount {
 
   Instant date() {
     return date;
+  }
+
+  Amount negative() {
+    return new Amount(value * -1d, this.date());
   }
 }

@@ -3,24 +3,26 @@ package io.github.codemumbler.banking;
 public class Account {
 
   private final Transactions transactions = new Transactions();
+  private final StatementList statementList = new StatementList();
 
-  public void deposit(double amount) {
+  public void deposit(Amount amount) {
     addtransaction(amount);
   }
 
-  private void addtransaction(double amount) {
-    transactions.addAmount(new Amount(amount));
+  private void addtransaction(Amount amount) {
+    transactions.addAmount(amount);
+    statementList.addTransaction(new Statement(amount, transactions.balance()));
   }
 
   public double balance() {
     return transactions.balance();
   }
 
-  public void withdrawl(double amount) {
-    addtransaction(-1d * amount);
+  public void withdrawl(Amount amount) {
+    addtransaction(amount.negative());
   }
 
   public String printStatement() {
-    return new Statement(transactions.history()).toString();
+    return statementList.toString();
   }
 }

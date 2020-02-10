@@ -2,33 +2,31 @@ package io.github.codemumbler.banking;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 class Statement {
 
-  private final List<Amount> transactionHistory;
+  private static final String LINE_FORMAT = "%s\t%s\t$%.2f";
+  private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyy").withZone(ZoneId.systemDefault());
+  private final Amount amount;
+  private final double balance;
 
-  Statement(List<Amount> transactionHistory) {
-    this.transactionHistory = transactionHistory;
+  Statement(final Amount amount, final double balance) {
+    this.amount = amount;
+    this.balance = balance;
   }
 
   @Override
   public String toString() {
-    String lineFormat = "%s %s $%.2f%n";
-    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyy").withZone(ZoneId.systemDefault());
-    StringBuilder history = new StringBuilder();
-    double balance = 0d;
-
-    for (Amount amount : transactionHistory) {
-      balance += amount.value();
-      history.append(String.format(lineFormat, dateFormat.format(amount.date()), formatValue(amount.value()), balance));
-    }
-    return history.toString();
+    return String.format(LINE_FORMAT, formattedDate(), value(), balance);
   }
 
-  private String formatValue(double value) {
-    StringBuilder formattedValue = new StringBuilder(String.format("$%.2f", Math.abs(value)));
-    if (value < 0) {
+  private String formattedDate() {
+    return DATE_TIME_FORMATTER.format(amount.date());
+  }
+
+  private String value() {
+    StringBuilder formattedValue = new StringBuilder(String.format("$%.2f", Math.abs(amount.value())));
+    if (amount.value() < 0) {
       formattedValue.insert(0, "(").append(")");
     }
     return formattedValue.toString();
