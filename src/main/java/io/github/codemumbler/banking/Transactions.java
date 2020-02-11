@@ -15,10 +15,6 @@ class Transactions {
     return balance;
   }
 
-  List<Amount> history() {
-    return amounts;
-  }
-
   void addAmount(Amount amount) {
     amounts.add(amount);
   }
