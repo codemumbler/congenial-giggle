@@ -23,10 +23,18 @@ public class StatementList {
 
   private String matchFilter(Statement statement, PrintFilter filter) {
     String statementLine = "";
-    if (isDepositToWrite(statement, filter) || isWithdrawlToWrite(statement, filter)) {
+    if (isDepositToWrite(statement, filter) || isWithdrawlToWrite(statement, filter) || isBeforeFilter(statement, filter) || isAfterFilter(statement, filter)) {
       statementLine = statement.toString();
     }
     return statementLine;
+  }
+
+  private boolean isAfterFilter(Statement statement, PrintFilter filter) {
+    return filter.writeAfterDate() != null && statement.after(filter.writeAfterDate());
+  }
+
+  private boolean isBeforeFilter(Statement statement, PrintFilter filter) {
+    return filter.writeBeforeDate() != null && statement.before(filter.writeBeforeDate());
   }
 
   private boolean isWithdrawlToWrite(Statement statement, PrintFilter filter) {

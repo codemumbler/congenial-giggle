@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTest {
 
+  public static final long FEB_8_2020 = 1581217528L;
   private Amount oneHundred;
   private Account account;
 
@@ -17,10 +18,14 @@ public class AccountTest {
   public void setUp() {
     account = new Account();
     BankClock.setInstance(new BankClock() {
-
+      private int count = 0;
       @Override
       public Instant currentTime() {
-        return Instant.ofEpochSecond(1581217528L);
+        count++;
+        if (count <= 1) {
+          return Instant.ofEpochSecond(1581111111L);
+        }
+        return Instant.ofEpochSecond(FEB_8_2020);
       }
     });
     oneHundred = new Amount(100.0);
@@ -64,7 +69,7 @@ public class AccountTest {
     doDeposit();
     assertEquals("Date\tAmount\tBalance"
         + System.lineSeparator()
-        + "02/08/2020\t$100.00\t$100.00"
+        + "02/07/2020\t$100.00\t$100.00"
         + System.lineSeparator(),
         account.printStatement());
   }
@@ -74,7 +79,7 @@ public class AccountTest {
     doDepositAndWithdrawl();
     assertEquals("Date\tAmount\tBalance"
             + System.lineSeparator()
-            + "02/08/2020\t$100.00\t$100.00"
+            + "02/07/2020\t$100.00\t$100.00"
             + System.lineSeparator()
             + "02/08/2020\t($25.00)\t$75.00"
             + System.lineSeparator(),
@@ -94,7 +99,7 @@ public class AccountTest {
 
     assertEquals("Date\tAmount\tBalance"
             + System.lineSeparator()
-            + "02/08/2020\t$100.00\t$100.00"
+            + "02/07/2020\t$100.00\t$100.00"
             + System.lineSeparator(),
         account.printStatement(filter));
   }
@@ -104,6 +109,30 @@ public class AccountTest {
     doDepositAndWithdrawl();
 
     PrintFilter filter = PrintFilter.builder().includeWithdrawls().build();
+
+    assertEquals("Date\tAmount\tBalance"
+            + System.lineSeparator()
+            + "02/08/2020\t($25.00)\t$75.00"
+            + System.lineSeparator(),
+        account.printStatement(filter));
+  }
+
+  @Test
+  public void printBeforeDate() {
+    doDepositAndWithdrawl();
+    PrintFilter filter = PrintFilter.builder().before(Instant.ofEpochSecond(FEB_8_2020 - 1L)).build();
+
+    assertEquals("Date\tAmount\tBalance"
+            + System.lineSeparator()
+            + "02/07/2020\t$100.00\t$100.00"
+            + System.lineSeparator(),
+        account.printStatement(filter));
+  }
+
+  @Test
+  public void printAfterDate() {
+    doDepositAndWithdrawl();
+    PrintFilter filter = PrintFilter.builder().after(Instant.ofEpochSecond(FEB_8_2020 - 1L)).build();
 
     assertEquals("Date\tAmount\tBalance"
             + System.lineSeparator()

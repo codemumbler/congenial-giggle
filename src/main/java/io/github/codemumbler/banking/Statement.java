@@ -1,5 +1,6 @@
 package io.github.codemumbler.banking;
 
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -38,5 +39,13 @@ class Statement {
 
   public boolean isWithdrawl() {
     return (amount.value() < 0);
+  }
+
+  public boolean before(Instant beforeDate) {
+    return amount.date().isBefore(beforeDate);
+  }
+
+  public boolean after(Instant afterDate) {
+    return amount.date().isAfter(afterDate);
   }
 }
