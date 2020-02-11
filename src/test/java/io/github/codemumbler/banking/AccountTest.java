@@ -33,8 +33,12 @@ public class AccountTest {
 
   @Test
   public void deposit() {
-    account.deposit(oneHundred);
+    doDeposit();
     assertEquals(100.0, account.balance());
+  }
+
+  private void doDeposit() {
+    account.deposit(oneHundred);
   }
 
   @Test
@@ -44,21 +48,20 @@ public class AccountTest {
 
   @Test
   public void twoDeposits() {
-    account.deposit(oneHundred);
-    account.deposit(oneHundred);
+    doDeposit();
+    doDeposit();
     assertEquals(200.0, account.balance());
   }
 
   @Test
   public void withdrawl() {
-    account.deposit(oneHundred);
-    account.withdrawl(oneHundred);
-    assertEquals(0.0, account.balance());
+    doDepositAndWithdrawl();
+    assertEquals(75.0, account.balance());
   }
 
   @Test
   public void printStatement() {
-    account.deposit(oneHundred);
+    doDeposit();
     assertEquals("Date\tAmount\tBalance"
         + System.lineSeparator()
         + "02/08/2020\t$100.00\t$100.00"
@@ -68,8 +71,7 @@ public class AccountTest {
 
   @Test
   public void printStatementForDualTransaction() {
-    account.deposit(oneHundred);
-    account.withdrawl(new Amount(25d));
+    doDepositAndWithdrawl();
     assertEquals("Date\tAmount\tBalance"
             + System.lineSeparator()
             + "02/08/2020\t$100.00\t$100.00"
@@ -77,5 +79,36 @@ public class AccountTest {
             + "02/08/2020\t($25.00)\t$75.00"
             + System.lineSeparator(),
         account.printStatement());
+  }
+
+  private void doDepositAndWithdrawl() {
+    doDeposit();
+    account.withdrawl(new Amount(25d));
+  }
+
+  @Test
+  public void printOnlyDeposits() {
+    doDepositAndWithdrawl();
+
+    PrintFilter filter = PrintFilter.builder().includeDeposits().build();
+
+    assertEquals("Date\tAmount\tBalance"
+            + System.lineSeparator()
+            + "02/08/2020\t$100.00\t$100.00"
+            + System.lineSeparator(),
+        account.printStatement(filter));
+  }
+
+  @Test
+  public void printOnlyWithdrawls() {
+    doDepositAndWithdrawl();
+
+    PrintFilter filter = PrintFilter.builder().includeWithdrawls().build();
+
+    assertEquals("Date\tAmount\tBalance"
+            + System.lineSeparator()
+            + "02/08/2020\t($25.00)\t$75.00"
+            + System.lineSeparator(),
+        account.printStatement(filter));
   }
 }

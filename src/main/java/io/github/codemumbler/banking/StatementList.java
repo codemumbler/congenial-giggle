@@ -12,13 +12,28 @@ public class StatementList {
     statements.add(statement);
   }
 
-  @Override
-  public String toString() {
+  public String printWith(PrintFilter filter) {
     StringBuilder statementDocument = new StringBuilder(DATE_AMOUNT_BALANCE);
     statementDocument.append(System.lineSeparator());
     for (Statement statement : statements) {
-      statementDocument.append(statement.toString()).append(System.lineSeparator());
+      statementDocument.append(matchFilter(statement, filter));
     }
     return statementDocument.toString();
+  }
+
+  private String matchFilter(Statement statement, PrintFilter filter) {
+    String statementLine = "";
+    if (isDepositToWrite(statement, filter) || isWithdrawlToWrite(statement, filter)) {
+      statementLine = statement.toString();
+    }
+    return statementLine;
+  }
+
+  private boolean isWithdrawlToWrite(Statement statement, PrintFilter filter) {
+    return filter.writeWithdrawls() && statement.isWithdrawl();
+  }
+
+  private boolean isDepositToWrite(Statement statement, PrintFilter filter) {
+    return filter.writeDeposits() && statement.isDeposit();
   }
 }

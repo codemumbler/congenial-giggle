@@ -28,4 +28,6 @@ public class Amount {
   Amount negative() {
     return new Amount(value * -1d, this.date());
   }
+
+  
 }

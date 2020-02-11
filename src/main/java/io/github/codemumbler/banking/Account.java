@@ -23,6 +23,10 @@ public class Account {
   }
 
   public String printStatement() {
-    return statementList.toString();
+    return printStatement(PrintFilter.DEFAULT_FILTER);
+  }
+
+  public String printStatement(PrintFilter filter) {
+    return statementList.printWith(filter);
   }
 }
